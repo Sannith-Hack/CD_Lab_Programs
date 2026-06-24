@@ -2,18 +2,15 @@
 #include <string.h>
 
 int main() {
-    char keywords[32][10] = {"int", "float", "char", "double", "if", "else", "while", "for", "return", "void", "switch", "case"};
+    char keys[5][10] = {"int", "float", "if", "else", "while"};
     char str[20];
     printf("Enter string: ");
     scanf("%s", str);
-    int i, flag = 0;
-    for(i=0; i<12; i++) {
-        if(strcmp(str, keywords[i]) == 0) {
-            flag = 1;
-            break;
+    for(int i=0; i<5; i++) {
+        if(strcmp(str, keys[i]) == 0) {
+            printf("Keyword\n"); return 0;
         }
     }
-    if(flag) printf("Keyword\n");
-    else printf("Not a keyword\n");
+    printf("Not Keyword\n");
     return 0;
 }

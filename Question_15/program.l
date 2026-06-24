@@ -1,15 +1,13 @@
 %{
-#include <stdio.h>
-int count = 0;
+int op = 0;
 %}
 %%
-"+"|"-"|"*"|"/"|"%"|"="|"<"|">"|"=="|"!="|"<="|">="|"&&"|"||"|"!" { count++; printf("Operator: %s\n", yytext); }
+"+"|"-"|"*"|"/"|"="|"=="|"<"|">" { op++; }
 . | \n { }
 %%
-int main(int argc, char **argv) {
-    if(argc > 1) yyin = fopen(argv[1], "r");
+int main() {
     yylex();
-    printf("Total operators: %d\n", count);
+    printf("Total operators: %d\n", op);
     return 0;
 }
 int yywrap() { return 1; }

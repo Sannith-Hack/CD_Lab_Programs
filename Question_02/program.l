@@ -2,12 +2,8 @@
 #include <stdio.h>
 %}
 %%
-[a-z] { printf("Lowercase alphabet a-z recognized: %s\n", yytext); }
-.     { /* Ignore other */ }
-\n    { return 0; }
+[a-z] { printf("Lowercase a-z: %s\n", yytext); }
+. | \n { /* Ignore */ }
 %%
-int main() {
-    yylex();
-    return 0;
-}
+int main() { yylex(); return 0; }
 int yywrap() { return 1; }

@@ -1,16 +1,14 @@
 %{
-#include <stdio.h>
-int count = 0;
+int k = 0;
 %}
 %%
-int|float|char|double|if|else|while|for|return|void { count++; printf("Keyword: %s\n", yytext); }
+int|float|char|if|else|while|for|return { k++; }
 [a-zA-Z0-9_]+ { }
 . | \n { }
 %%
-int main(int argc, char **argv) {
-    if(argc > 1) yyin = fopen(argv[1], "r");
+int main() {
     yylex();
-    printf("Total keywords: %d\n", count);
+    printf("Total keywords: %d\n", k);
     return 0;
 }
 int yywrap() { return 1; }

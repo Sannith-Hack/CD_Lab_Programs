@@ -1,17 +1,15 @@
-void ll1_parse() {
-    push('$'); push('S'); // S is start symbol
+#include<stdio.h>
+#include<string.h>
+int main() {
+    char stack[20]="$E", in[20]; int top=1, i=0;
+    printf("Grammar: E->i\nEnter input: "); scanf("%s", in);
     while(stack[top] != '$') {
-        char X = stack[top];
-        char a = input[i];
-        if (X == a) {
-            pop(); i++;
-        } else if (isTerminal(X)) {
-            error();
-        } else if (M[X][a] != ERROR) {
-            pop();
-            push_reverse(M[X][a]); // Push rule onto stack
-        } else {
-            error();
-        }
+        if(stack[top] == in[i]) { top--; i++; }
+        else if(stack[top] == 'E' && in[i] == 'i') {
+            top--; stack[++top] = 'i';
+        } else { printf("Rejected\n"); return 0; }
     }
+    if(in[i] == '$') printf("Accepted\n");
+    else printf("Rejected\n");
+    return 0;
 }

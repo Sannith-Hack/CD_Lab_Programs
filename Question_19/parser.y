@@ -6,15 +6,8 @@ void yyerror(char *s);
 %}
 %token A B NL
 %%
-S : A S B NL { printf("Valid string\n"); exit(0); }
-  | NL { printf("Valid string (n=0)\n"); exit(0); }
-  ;
+S: X NL { printf("Accepted\n"); exit(0); }
+X: A X B | ;
 %%
-void yyerror(char *s) {
-    printf("Invalid string\n");
-    exit(0);
-}
-int main() {
-    yyparse();
-    return 0;
-}
+void yyerror(char *s) { printf("Rejected\n"); exit(0); }
+int main() { yyparse(); return 0; }

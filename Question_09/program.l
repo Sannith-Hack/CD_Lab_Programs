@@ -1,15 +1,15 @@
 %{
-#include <stdio.h>
-int lines=0, chars=0, spaces=0, tabs=0;
+int l=0, c=0, s=0, t=0;
 %}
 %%
-\n      { lines++; chars++; }
-[ \t]   { spaces++; chars++; if(yytext[0]=='\t') tabs++; }
-.       { chars++; }
+\n      { l++; c++; }
+" "      { s++; c++; }
+\t      { t++; c++; }
+.        { c++; }
 %%
 int main() {
     yylex();
-    printf("Lines: %d\nChars: %d\nSpaces: %d\nTabs: %d\n", lines, chars, spaces, tabs);
+    printf("Lines:%d Chars:%d Spaces:%d Tabs:%d\n", l, c, s, t);
     return 0;
 }
 int yywrap() { return 1; }

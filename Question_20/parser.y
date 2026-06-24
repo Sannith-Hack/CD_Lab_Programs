@@ -7,18 +7,12 @@ void yyerror(char *s);
 %left '+' '-'
 %left '*' '/'
 %%
-expr: e { printf("Result: %d\n", $$); }
-    ;
+expr: e { printf("Ans: %d\n", $$); };
 e: e '+' e { $$ = $1 + $3; }
  | e '-' e { $$ = $1 - $3; }
  | e '*' e { $$ = $1 * $3; }
  | e '/' e { $$ = $1 / $3; }
- | '(' e ')' { $$ = $2; }
- | NUM { $$ = $1; }
- ;
+ | NUM { $$ = $1; };
 %%
 void yyerror(char *s) { printf("Error\n"); }
-int main() {
-    yyparse();
-    return 0;
-}
+int main() { yyparse(); return 0; }

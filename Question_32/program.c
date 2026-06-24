@@ -1,14 +1,19 @@
-struct Production {
-    char lhs;
-    char rhs[10][20]; // up to 10 alternatives, each max 20 chars
-    int alt_count;
-};
+#include<stdio.h>
+#include<string.h>
 
-// Left recursion elimination:
-// A -> A alpha | beta
-// becomes:
-// A -> beta A'
-// A' -> alpha A' | epsilon
-
-// The computation of FIRST and FOLLOW involves iterative sets.
-// (See Question 22 for basic FIRST logic)
+int main() {
+    int n; char p[10][20];
+    printf("Enter number of productions: "); scanf("%d", &n);
+    for(int i=0; i<n; i++) scanf("%s", p[i]);
+    
+    printf("\n--- Left Recursion Elimination ---\n");
+    for(int i=0; i<n; i++) {
+        if(p[i][0] == p[i][3]) {
+            printf("%c -> %c%c'\n", p[i][0], p[i][5], p[i][0]);
+            printf("%c' -> %c%c' | e\n", p[i][0], p[i][4], p[i][0]);
+        } else printf("%s\n", p[i]);
+    }
+    // Simplistic FIRST and FOLLOW
+    printf("\nFIRST and FOLLOW are set computations\n");
+    return 0;
+}

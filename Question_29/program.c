@@ -1,21 +1,14 @@
-#include <stdio.h>
-char input[100];
-int i = 0;
-
-void E(); void T(); void F();
-
-void E() { T(); if(input[i]=='+') { i++; T(); } }
-void T() { F(); if(input[i]=='*') { i++; F(); } }
-void F() { 
-    if(input[i]=='(') { i++; E(); if(input[i]==')') i++; }
-    else if(input[i]=='i') { i++; } 
-}
-
+#include<stdio.h>
+#include<string.h>
+char input[10]; int i=0, err=0;
+void S(); void A();
+void S() { if(input[i]=='a') { i++; A(); if(input[i]=='b') i++; else err=1; } }
+void A() { if(input[i]=='c') i++; }
 int main() {
-    printf("Enter string (e.g. i+i*i): ");
+    printf("Grammar: S->aAb, A->c\nEnter string: ");
     scanf("%s", input);
-    E();
-    if(input[i] == '\0') printf("Success\n");
-    else printf("Error\n");
+    S();
+    if(strlen(input)==i && err==0) printf("Accepted\n");
+    else printf("Rejected\n");
     return 0;
 }
