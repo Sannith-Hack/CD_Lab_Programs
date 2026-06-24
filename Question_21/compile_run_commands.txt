@@ -1,0 +1,4 @@
+yacc -d parser.y
+flex lexer.l
+gcc lex.yy.c y.tab.c -o run_program
+run_program.exe

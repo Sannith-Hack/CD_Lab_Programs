@@ -1,0 +1,2 @@
+gcc program.c -o run_program
+run_program.exe
